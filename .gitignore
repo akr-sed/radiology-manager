@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.env
+db.sqlite3
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Node
+node_modules/
+react/node_modules/
+react/build/
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Media uploads
+media/
+
+# Design system (generated)
+design-system/
+
+# Models (large binary files)
+Models/*.pt
+
+# Misc
+*.pdf
+ia.png
+2.12'

@@ -1,0 +1,32 @@
+{
+    "status": "success",
+    "patients": [
+        {
+            "id": 1,
+            "nom": "Doe",
+            "prenom": "John",
+            "email": "john.doe@example.com",
+            "phonenumber": "+1234567890",
+            "adresse": "123 Rue Principale, Paris",
+            "date_naissance": "1990-05-15"
+        },
+        {
+            "id": 2,
+            "nom": "Finn",
+            "prenom": "Ben Bekka",
+            "email": "FinnBekka@example.com",
+            "phonenumber": "+213213213123",
+            "adresse": "Tataoine",
+            "date_naissance": "1830-06-14"
+        },
+        {
+            "id": 3,
+            "nom": "Apple",
+            "prenom": "Pie",
+            "email": "i<3pies@example.com",
+            "phonenumber": "+31415926535",
+            "adresse": "Pie land",
+            "date_naissance": "2025-04-20"
+        }
+    ]
+}

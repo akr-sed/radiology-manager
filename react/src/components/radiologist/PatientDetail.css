@@ -1,0 +1,309 @@
+.patient-detail-container {
+  padding: 20px;
+  height: 100%;
+}
+
+.patient-info-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    color: #007bff; /* Couleur bleu-gris foncé professionnelle */
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #007bff; /* Ligne de séparation bleue */
+   
+    text-transform: uppercase; /* Optionnel - met le texte en majuscules */
+    letter-spacing: 0.5px;
+}
+.patient-info-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.patient-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-group label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.info-group p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+.radiological-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.radiological-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.image-buttons-container {
+  display: flex;
+  gap: 16px;
+}
+
+.image-button {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-button:hover {
+  border-color: #007bff;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.type-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.count-badge {
+  background: #ff0000;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Style corrigé pour le bouton + */
+.add-button {
+  background-color: hsl(214, 71%, 66%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1;
+  margin-left: 4px;
+}
+
+.add-button:hover {
+  background-color: #4a6fdd;
+}
+
+/* Suppression de tous les pseudo-éléments qui pourraient ajouter un autre + */
+.add-button::before,
+.add-button::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .patient-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-buttons-container {
+    flex-direction: column;
+  }
+
+  .image-button {
+    width: 100%;
+  }
+}
+
+.gallery-page {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+}
+
+.back-button:hover {
+  color: #0056b3;
+}
+.ai-loading-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(155, 89, 182, 0.3);
+  border-radius: 50%;
+  border-top-color: #9b59b6;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 31, 43, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  position: absolute;
+  margin-top: 80px;
+  color: white;
+  font-size: 16px;
+}
+.generate-report-container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.generate-report-button {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.generate-report-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+}
+
+.generate-report-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.generate-report-container button:last-child {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  margin-right: 0;
+}
+
+.generate-report-container button:last-child:hover:not(:disabled) {
+  background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .generate-report-container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .generate-report-button {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .generate-report-container button:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Animation de chargement */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.generate-report-button:disabled {
+  animation: pulse 1.5s infinite;
+}

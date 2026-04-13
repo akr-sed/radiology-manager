@@ -1,0 +1,125 @@
+/* ImageGallery.css */
+
+.image-gallery-container {
+  display: flex;
+  height: 100vh;
+  background: #121212;
+  color: #eee;
+  font-family: sans-serif;
+}
+
+.thumbnails-sidebar {
+  width: 200px;
+  background: #1f1f1f;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.thumbnails-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.thumbnails-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumbnail {
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.thumbnail.active {
+  border: 2px solid #4caf50;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.thumbnail-info {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+  color: #999;
+}
+
+.main-image-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #181818;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.canvas-view {
+  position: relative;
+}
+
+.canvas-toolbar {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* pour s'adapter si l'écran est petit */
+}
+
+.canvas-toolbar button {
+  padding: 6px 12px;
+  background: #333;
+  border: none;
+  color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.canvas-toolbar button:hover {
+  background: #555;
+}
+
+.canvas-toolbar button.active {
+  background: #4caf50;
+}
+
+.no-image-message {
+  color: #aaa;
+  font-size: 18px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #999;
+  border-top: 5px solid #4caf50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

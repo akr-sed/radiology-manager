@@ -1,0 +1,590 @@
+.image-gallery-container {
+  display: flex;
+  height: calc(100vh - 180px);
+  background: white;
+}
+.annotations-count-message {
+  position: relative;
+  bottom: 0px;
+  height: 30px;
+  width: max-content;
+  left:0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 100;
+  font-size: 14px;
+}
+.ai-loading-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(155, 89, 182, 0.3);
+  border-radius: 50%;
+  border-top-color: #9b59b6;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+.thumbnails-sidebar {
+  width: 250px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnails-header {
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.thumbnails-list {
+  flex: 1;
+  overflow-y: auto;
+
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: #f8f9fa;
+}
+
+.thumbnail {
+  position: relative;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  height: 150px;
+}
+
+.thumbnail.active {
+  border-color: #007bff;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  color: white;
+}
+
+.thumbnail-date {
+  font-size: 12px;
+  text-align: center;
+  display: block;
+}
+
+.main-image-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.image-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main-image {
+  flex: 1;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.image-info-panel {
+  background: white;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.image-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.image-info-header h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.image-date {
+  color: #666;
+  font-size: 14px;
+  display: block;
+}
+
+/* Nouveau conteneur pour aligner les boutons */
+.image-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 70px;
+
+  width: auto;
+}
+
+/* ImageGallery.css */
+
+.image-gallery-container {
+  display: flex;
+  flex-direction: row;
+  /* 🔑 hauteur minimum = hauteur viewport mais extensible si plus grand */
+  min-height: 100vh;
+  height: auto;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  background-color: #f8f9fa;
+}
+
+.canvas-section {
+  padding: 20px;
+  /* 🔑 que le contenu puisse dépasser */
+  height: auto;
+  width: auto;
+}
+
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  /* pas de height fixe : la hauteur dépend du contenu (image + annotations) */
+}
+
+/* Style du bouton Annoter */
+.annotate-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.annotate-button:hover {
+  background: #0069d9;
+}
+
+.delete-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #c82333;
+}
+
+.delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.delete-confirm span {
+
+  color: #dc3545;
+  white-space: nowrap;
+  /* 🔑 force le texte sur une seule ligne */
+  flex-shrink: 0;
+  /* évite de le compresser */
+}
+
+.confirm-yes,
+.confirm-no {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-yes {
+  background: #dc3545;
+  color: white;
+}
+
+.confirm-no {
+  background: #6c757d;
+  color: white;
+}
+
+.image-description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.no-image-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  font-size: 16px;
+}
+
+/* Glow effects */
+.glow-effect {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow-1 {
+  top: -100px;
+  left: -100px;
+}
+
+.glow-2 {
+  bottom: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(155, 89, 182, 0.15) 0%, rgba(155, 89, 182, 0) 70%);
+}
+
+/* Scrollbar personnalisée */
+.thumbnails-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thumbnails-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.thumbnails-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.thumbnails-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 31, 43, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  position: absolute;
+  margin-top: 80px;
+  color: white;
+  font-size: 16px;
+}
+
+.icon {
+  background: white;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  padding: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.delete-icon {
+  color: red;
+}
+
+:root {
+  --main-bg: #1a1f2b;
+  --primary: #ecf0f1;
+  --accent: #3498db;
+  --danger: #e74c3c;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background: var(--main-bg);
+  color: var(--primary);
+  font-family: sans-serif;
+}
+
+/* Container global */
+.image-gallery-container {
+  display: flex;
+  height: max-content;
+}
+
+/* Sidebar miniatures */
+.thumbnails-sidebar {
+  width: 250px;
+  color: white;
+  overflow-y: auto;
+max-height: 600px;
+}
+
+.thumbnails-header {
+  padding: 15px;
+  font-weight: bold;
+
+}
+
+.thumbnail {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.thumbnail img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.thumbnail.active {
+  border: 2px solid var(--accent);
+}
+
+
+.canvas-section {
+  position: relative;
+}
+
+.canvas-wrapper {
+
+  position: relative;
+}
+
+.canvas-glow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 20px rgba(52, 152, 219, 0.3);
+  pointer-events: none;
+}
+
+/* Annotation rectangles + texte note */
+.canvas-wrapper div {
+  position: absolute;
+}
+
+.canvas-wrapper div span {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: black;
+  color: white;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.canvas-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-wrapper {
+  width: 750px;
+  height: 600px;
+  overflow: auto; /* active le scroll si l'image déborde */
+  position: relative;
+  cursor: grab;
+}
+
+
+.canvas-wrapper:active {
+  cursor: grabbing;
+}
+
+
+
+.canvas-wrapper img {
+  display: block;
+  max-width: none; /* ne limite pas l'image elle-même */
+  max-height: none;
+}
+
+/* Zone info annotation */
+.annotation-info {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  background-color: var(--card-bg);
+  font-size: 14px;
+  width: 90%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 30px var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.annotation-info h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+
+}
+
+.annotation-info p {
+  margin: 6px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.annotation-info textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  resize: vertical;
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 80px;
+  transition: all 0.3s;
+  background-color: rgba(26, 31, 43, 0.454);
+  color: white;
+}
+
+.main-content1 {
+  margin-left: 50px;
+}
+
+.canvas-wrapper {
+  margin-left: 120px;
+}
+
+.gallery-page {
+  
+  
+}
+
+.annotation-info textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+/* Icônes delete & resize */
+.icon {
+  position: absolute;
+  width: 37px;
+  height: 37px;
+
+  background: #2c3e50;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 5px var(--shadow);
+  transition: 0.2s;
+}
+
+.patient-detail-container {
+  background-color: white;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.delete-icon:hover {
+  background: var(--danger);
+}
+
+.resize-icon:hover {
+  background: var(--accent);
+}
+
+/* Bar d'actions */
+.image-actions {
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+
+}
+
+.image-actions button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  margin: 0 5px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.image-actions button:hover {
+  background: #2980b9;
+}
+
+.delete-confirm {
+
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-confirm button {
+  margin: 0 5px;
+  max-width: 70px;
+  min-height: 40px;
+}

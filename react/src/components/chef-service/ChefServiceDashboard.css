@@ -1,0 +1,125 @@
+.dashboard {
+    padding: 20px;
+    background-color: #f5f7fb;
+    min-height: 100vh;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboard-header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .dashboard-header p {
+    margin: 10px 0 0;
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .dashboard-content {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .dashboard-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-section h2 {
+    margin: 0 0 20px;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+  }
+  
+  .action-button:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .action-button img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .action-button span {
+    font-weight: 500;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .stat-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card h3 {
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .stat-number {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .activity-list {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+  
+  .activity-list p {
+    margin: 0;
+    color: #666;
+    text-align: center;
+    font-size: 14px;
+  } 

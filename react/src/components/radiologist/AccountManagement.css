@@ -1,0 +1,97 @@
+.account-container {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 50px 50px;
+}
+
+.account-container h2 {
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.account-content {
+  max-width: 600px;
+}
+
+.info-group,
+.form-group {
+  margin-bottom: 20px;
+}
+
+.info-group label,
+.form-group label {
+  display: block;
+  color: #666;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.info-group p {
+  color: #333;
+  font-size: 16px;
+  margin: 0;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin-top: 20px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.save-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}

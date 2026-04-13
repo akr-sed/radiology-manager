@@ -1,0 +1,35 @@
+# ====================================
+# requirements_v2.txt - LangChain 0.2.x
+# ====================================
+
+# LangChain - version 0.2.x (stable)
+langchain==0.2.0
+langchain-core==0.2.0
+langchain-community==0.2.0
+
+# Transformers
+transformers==4.35.0
+
+# Ultralytics YOLO
+ultralytics==8.0.207
+
+# Génération de rapports
+reportlab==4.0.9
+pypandoc==1.12
+
+# Django et extensions
+django==4.2.7
+django-cors-headers==4.3.1
+channels==4.0.0
+daphne==4.0.0
+djangorestframework==3.14.0
+
+# Redis et WebSockets
+redis==5.0.1
+channels-redis==4.1.0
+
+# Utilitaires
+pillow==10.2.0
+opencv-python==4.9.0.80
+pandas==2.2.0
+numpy==1.26.3
