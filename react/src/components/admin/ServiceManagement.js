@@ -4,7 +4,7 @@ import fetchWithAuth from "../fetchWithAuth";
 import API_BASE from "../../config";
 import "../shared/Shared.css";
 
-const EMPTY_FORM = { nom: "", nom_hopital: "", adresse: "", modalite: "xray", organe: "autre", ai_model: "none" };
+const EMPTY_FORM = { nom: "", nom_hopital: "", adresse: "", modalites: [], organes: [], ai_models: [] };
 
 const MODALITY_OPTIONS = [
   { value: "xray", label: "Radiographie (X-Ray)" },
@@ -75,9 +75,9 @@ export default function ServiceManagement() {
       nom: service.nom || "",
       nom_hopital: service.nom_hopital || "",
       adresse: service.adresse || "",
-      modalite: service.modalite || "xray",
-      organe: service.organe || "autre",
-      ai_model: service.ai_model || "none",
+      modalites: Array.isArray(service.modalites) ? service.modalites : [],
+      organes: Array.isArray(service.organes) ? service.organes : [],
+      ai_models: Array.isArray(service.ai_models) ? service.ai_models : [],
     });
     setModalOpen(true);
   };
@@ -92,8 +92,26 @@ export default function ServiceManagement() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const toggleMulti = (field, value) => {
+    setForm((prev) => {
+      const current = prev[field] || [];
+      const next = current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value];
+      return { ...prev, [field]: next };
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (form.modalites.length === 0) {
+      alert("Veuillez sélectionner au moins une modalité.");
+      return;
+    }
+    if (form.organes.length === 0) {
+      alert("Veuillez sélectionner au moins un organe.");
+      return;
+    }
     try {
       if (editing) {
         const res = await fetchWithAuth(`${API_BASE}/api/modifierService`, {
@@ -191,9 +209,31 @@ export default function ServiceManagement() {
               <tr key={s.id}>
                 <td>{s.nom}</td>
                 <td>{s.nom_hopital}</td>
-                <td><span className="status-badge info">{s.modalite_display || s.modalite}</span></td>
-                <td>{s.organe_display || s.organe}</td>
-                <td>{s.ai_model === "none" ? <span style={{color:"#999"}}>Aucun</span> : <span className="status-badge success">{s.ai_model_display || s.ai_model}</span>}</td>
+                <td>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                    {(s.modalites_display || []).map((m, i) => (
+                      <span key={i} className="status-badge info">{m}</span>
+                    ))}
+                  </div>
+                </td>
+                <td>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                    {(s.organes_display || []).map((o, i) => (
+                      <span key={i} className="status-badge">{o}</span>
+                    ))}
+                  </div>
+                </td>
+                <td>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                    {((s.ai_models || []).filter(a => a !== "none")).length === 0 ? (
+                      <span style={{ color: "#999" }}>Aucun</span>
+                    ) : (
+                      (s.ai_models_display || []).map((a, i) => (
+                        s.ai_models[i] === "none" ? null : <span key={i} className="status-badge success">{a}</span>
+                      ))
+                    )}
+                  </div>
+                </td>
                 <td>
                   <button
                     className="action-btn edit"
@@ -256,28 +296,52 @@ export default function ServiceManagement() {
                 />
               </div>
               <div className="form-group">
-                <label>Modalité *</label>
-                <select name="modalite" value={form.modalite} onChange={handleChange} required>
+                <label>Modalités * (plusieurs possibles)</label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 4 }}>
                   {MODALITY_OPTIONS.map((o) => (
-                    <option key={o.value} value={o.value}>{o.label}</option>
+                    <label key={o.value} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: "normal", cursor: "pointer" }}>
+                      <input
+                        type="checkbox"
+                        checked={form.modalites.includes(o.value)}
+                        onChange={() => toggleMulti("modalites", o.value)}
+                        style={{ width: "auto" }}
+                      />
+                      <span>{o.label}</span>
+                    </label>
                   ))}
-                </select>
+                </div>
               </div>
               <div className="form-group">
-                <label>Organe *</label>
-                <select name="organe" value={form.organe} onChange={handleChange} required>
+                <label>Organes * (plusieurs possibles)</label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 4 }}>
                   {ORGAN_OPTIONS.map((o) => (
-                    <option key={o.value} value={o.value}>{o.label}</option>
+                    <label key={o.value} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: "normal", cursor: "pointer" }}>
+                      <input
+                        type="checkbox"
+                        checked={form.organes.includes(o.value)}
+                        onChange={() => toggleMulti("organes", o.value)}
+                        style={{ width: "auto" }}
+                      />
+                      <span>{o.label}</span>
+                    </label>
                   ))}
-                </select>
+                </div>
               </div>
               <div className="form-group">
-                <label>Modèle IA</label>
-                <select name="ai_model" value={form.ai_model} onChange={handleChange}>
-                  {AI_MODEL_OPTIONS.map((o) => (
-                    <option key={o.value} value={o.value}>{o.label}</option>
+                <label>Modèles IA (plusieurs possibles)</label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 4 }}>
+                  {AI_MODEL_OPTIONS.filter(o => o.value !== "none").map((o) => (
+                    <label key={o.value} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: "normal", cursor: "pointer" }}>
+                      <input
+                        type="checkbox"
+                        checked={form.ai_models.includes(o.value)}
+                        onChange={() => toggleMulti("ai_models", o.value)}
+                        style={{ width: "auto" }}
+                      />
+                      <span>{o.label}</span>
+                    </label>
                   ))}
-                </select>
+                </div>
               </div>
               <div className="form-actions">
                 <button

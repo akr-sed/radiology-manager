@@ -18,13 +18,17 @@ def ajouter_service(request):
                 return JsonResponse({"status": "error", "message": f"Champs manquants: {', '.join(missing_fields)}"}, status=400)
 
             # Création du nouveau Service
+            modalites = data.get('modalites', ['xray'])
+            organes = data.get('organes', ['autre'])
+            ai_models = data.get('ai_models', ['none'])
+
             service = Service.objects.create(
                 nom=data['nom'],
                 nom_hopital=data['nom_hopital'],
                 adresse=data['adresse'],
-                modalite=data.get('modalite', 'xray'),
-                organe=data.get('organe', 'autre'),
-                ai_model=data.get('ai_model', 'none'),
+                modalites=','.join(modalites) if isinstance(modalites, list) else modalites,
+                organes=','.join(organes) if isinstance(organes, list) else organes,
+                ai_models=','.join(ai_models) if isinstance(ai_models, list) else ai_models,
             )
 
             return JsonResponse({
@@ -35,9 +39,9 @@ def ajouter_service(request):
                     "nom": service.nom,
                     "nom_hopital": service.nom_hopital,
                     "adresse": service.adresse,
-                    "modalite": service.modalite,
-                    "organe": service.organe,
-                    "ai_model": service.ai_model,
+                    "modalites": service.get_modalites_list(),
+                    "organes": service.get_organes_list(),
+                    "ai_models": service.get_ai_models_list(),
                 }
             }, status=201)
 

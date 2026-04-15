@@ -17,12 +17,12 @@ def service_list(request):
             "nom": service.nom,
             "nom_hopital": service.nom_hopital,
             "adresse": service.adresse,
-            "modalite": service.modalite,
-            "modalite_display": service.get_modalite_display(),
-            "organe": service.organe,
-            "organe_display": service.get_organe_display(),
-            "ai_model": service.ai_model,
-            "ai_model_display": service.get_ai_model_display(),
+            "modalites": service.get_modalites_list(),
+            "modalites_display": service.get_modalites_display(),
+            "organes": service.get_organes_list(),
+            "organes_display": service.get_organes_display(),
+            "ai_models": service.get_ai_models_list(),
+            "ai_models_display": service.get_ai_models_display(),
         } for service in services]
 
         return JsonResponse({"status": "success", "services": services_data}, status=200)

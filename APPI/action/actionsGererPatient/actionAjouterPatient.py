@@ -41,12 +41,19 @@ def ajouter_patient(request):
         date_naissance=date_naissance
     )
 
-    # Si l'utilisateur est un radiologue, assignez directement ce radiologue au patient
-    if hasattr(user, 'radiologue'):
-        patient.radiologue = user.radiologue
+    # Check if user is a radiologue (by role group or by Radiologue instance)
+    is_radiologue = user.groups.filter(name=Role.RADIOLOGUE).exists() or hasattr(user, 'radiologue')
+
+    if is_radiologue:
+        # Resolve the Radiologue instance (create one if missing so the FK works)
+        try:
+            radiologue = user.radiologue if hasattr(user, 'radiologue') else Radiologue.objects.get(pk=user.pk)
+        except Radiologue.DoesNotExist:
+            radiologue = Radiologue(compte_ptr_id=user.pk)
+            radiologue.__dict__.update(user.__dict__)
+            radiologue.save_base(raw=True)
+        patient.radiologue = radiologue
     else:
-        # Si l'utilisateur n'est pas un radiologue (chef de service ou secrétaire),
-        # utilisez le radiologue_id fourni dans la requête
         radiologue_id = data.get('radiologue_id')
         if not radiologue_id:
             return JsonResponse({"status": "error", "message": "Radiologue ID manquant."}, status=400)

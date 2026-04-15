@@ -25,9 +25,16 @@ def modifier_service(request):
         service.nom = data.get('nom', service.nom)
         service.nom_hopital = data.get('nom_hopital', service.nom_hopital)
         service.adresse = data.get('adresse', service.adresse)
-        service.modalite = data.get('modalite', service.modalite)
-        service.organe = data.get('organe', service.organe)
-        service.ai_model = data.get('ai_model', service.ai_model)
+
+        if 'modalites' in data:
+            modalites = data['modalites']
+            service.modalites = ','.join(modalites) if isinstance(modalites, list) else modalites
+        if 'organes' in data:
+            organes = data['organes']
+            service.organes = ','.join(organes) if isinstance(organes, list) else organes
+        if 'ai_models' in data:
+            ai_models = data['ai_models']
+            service.ai_models = ','.join(ai_models) if isinstance(ai_models, list) else ai_models
 
         # Sauvegarde des modifications
         service.save()
